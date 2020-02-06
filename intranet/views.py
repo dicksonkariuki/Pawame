@@ -261,5 +261,6 @@ def disapproved(request, id):
 def delete_employee(request,id):
     query = User.objects.get(pk=id)
     query.delete()
-    return redirect("searchResults")
+    return redirect("employees")
+
 

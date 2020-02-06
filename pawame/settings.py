@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import dj_database_url
 from decouple import config, Csv
+import django_heroku
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -221,8 +222,7 @@ EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
-# FILE_UPLOAD_MAX_MEMORY_SIZE = 100000000
-# FILE_UPLOAD_PERMISSIONS  = 0o644
-
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+django_heroku.settings(locals())

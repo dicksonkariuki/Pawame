@@ -25,6 +25,7 @@ urlpatterns = [
     path('disapprove/<int:id>', views.disapproved, name='disapprove'),
     path('delete_employee/<int:id>',views.delete_employee, name='delete_employee')
 
+
 ]
 
 if settings.DEBUG:

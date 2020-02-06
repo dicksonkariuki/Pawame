@@ -10,36 +10,38 @@
         <div class="col-lg-3 card card-cascade narrower mr-3 mb-3">
 
             <!-- Card image -->
-            <div class="view view-cascade overlay mx-auto">
-                {% if employee.image %}
-                <img class="card-img-top img-fluid" src="{{employee.image.url}}" height="150px"
-                    alt="Card image cap">
+
+            <div class="view mx-auto mt-1">
+                {% if user.image %}
+                <img class="card-img-top" style="border-radius: 50%; height: 150px; width: 150px;"
+                    src="{{user.image.url}}" alt="Card image cap">
                 {% else %}
-                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Avatars/avatar.jpg" height="150px"
-                    alt="Card image cap">
+                <img class="card-img-top" style="border-radius: 50%; height: 150px; width: 150px;"
+                    src="https://mdbootstrap.com/img/Photos/Avatars/avatar.jpg" alt="Card image cap">
                 {% endif %}
-                <a>
+                <a href="#!">
                     <div class="mask rgba-white-slight"></div>
                 </a>
             </div>
 
+
             <!-- Card content -->
-            <div class="card-body card-body-cascade">
+            <div class="card-body card-body-cascade text-center text-muted">
 
                 <!-- Label -->
-                <h5 class="pb-2 pt-1"><span class="green-text">Name: </span>{{employee.username}} </h5>
+                <h5 class="pb-2 pt-1">{{employee.username}} </h5>
                 {%if employee.department == None %}
-                <h5 class="pb-2 pt-1"><span class="green-text">Super Admin </h5>
+                <h5 class="pb-2 pt-1">Super Admin </h5>
                 {% elif employee.department == 1 %}
-                <h5 class="pb-2 pt-1"><span class="green-text">Department: </span>Human Resource</h5>
+                <h5 class="pb-2 pt-1"><span class="text-muted"></span>Human Resource</h5>
                 {% elif employee.department == 2 %}
-                <h5 class="pb-2 pt-1"><span class="green-text">Department: </span>Inventory</h5>
+                <h5 class="pb-2 pt-1"><span class="text-muted"></span>Inventory</h5>
                 {% elif employee.department == 3 %}
-                <h5 class="pb-2 pt-1"><span class="green-text">Department: </span>Finance</h5>
+                <h5 class="pb-2 pt-1"><span class="text-muted"></span>Finance</h5>
                 {% elif employee.department == 4 %}
-                <h5 class="pb-2 pt-1"><span class="green-text">Department: </span>Marketing</h5>
+                <h5 class="pb-2 pt-1"><span class="text-muted"></span>Marketing</h5>
                 {% else %}
-                <h5 class="pb-2 pt-1"><span class="green-text">Department: </span>Information Technology</h5>
+                <h5 class="pb-2 pt-1"><span class="text-muted"></span>Information Technology</h5>
                 {% endif %}
                 <!-- Title -->
                 <a class="btn btn-sm btn-outline-dark-green ml-0" data-toggle="modal" data-target="#modalLoginAvatar">
@@ -75,7 +77,7 @@
                 <div class="modal-header">
                     {% if employee.image %}
 
-                    <img src="{{employee.image.url}}" alt="image">
+                    <img src="{{employee.image.url}}" alt="image" style="height: 150px; width: 150px; border-radius: 50%;">
 
                     {% else %}
                     <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" alt="avatar"
@@ -119,13 +121,14 @@
 
                     <div class="row justify-content-center mt-2">
 
-                        <div class="btn-group btn-group-xs" role="group" aria-label="Basic example">
+
                             <button type="button" class="btn btn-sm btn-success mr-2"><i class="fas fa-user-edit pr-1"
                                     aria-hidden="true"></i>EDIT</button>
                             <!-- <button type="button" class="btn btn-sm btn-warning mr-2"><i
                                     class="far fa-pause-circle pr-1" aria-hidden="true"></i>SUSPEND</button> -->
                             <a href="{%url 'delete_employee' employee.id %}" class="btn btn-sm btn-danger"><i
                                     class="fas fa-trash pr-1" aria-hidden="true"></i>DELETE</a>
+
                         </div>
                     </div>
                 </div>

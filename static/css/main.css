@@ -15,6 +15,7 @@
 .post-content {
   font-family: 'Open Sans', sans-serif;
 }
+
 .noUpdates {
   display: flex;
   justify-content: center;
@@ -52,7 +53,7 @@
 .onlineUsers {
   position: fixed;
   bottom: 0;
-  right: 0;  
+  right: 0;
 }
 
 .tinted-image {
@@ -68,7 +69,6 @@
 .search {
   font-size: 40px;
 }
-
 
 .search-link a {
   color: black;
@@ -111,8 +111,8 @@
   }
 }
 
-
 /* Snackbar on commenting */
+
 #snackbar {
   visibility: hidden;
   min-width: 250px;
@@ -157,7 +157,25 @@
   animation: fadein 0.5s, fadeout 2.5s 2.5s;
 }
 
-#try{
+label {
+  display: none;
+}
+
+.form-control-file {
+  border: 2px solid #0B920D;
+  background-color: white;
+  color: #0B920D;
+  padding: 5px 5px;
   font-size: 10px;
   font-style: italic;
+  cursor: pointer;
+  width: 70%;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+#id_username{
+  border-top: hidden;
+  border-right: hidden;
+  border-left: hidden;
 }

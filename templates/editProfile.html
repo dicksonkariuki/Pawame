@@ -4,31 +4,58 @@
 {% block content %}
 
 <div class="container">
-  <h4 class="text-center font-weight-bold pt-2"> My Profile </h4>
+  <h4 class="text-center font-weight-bold"> My Profile </h4>
   <hr>
-  <div class="row d-flex justify-content-center">
-    <div class="col-md-7">
-      <div class="d-flex" sytle="justify-content: space-around;">
 
-                  {% if user.image %}                 
-                  <img class="rounded-circle avatar z-depth-1-half mr-1" src="{{user.image.url}}" style="width:150px; height:150px;"> 
-                  {% else %}
-                   <img class="rounded-circle avatar z-depth-1-half mr-1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmgQLi9YIA2uiwnuZ_LU_K-nOVMvilA2A5M2dNNescwKKBm6EI&s" style="width:150px; height:150px;"> 
-                  {% endif %}
+  <!--Card-->
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="card card-personal mb-4">
 
+        <!--Card image-->
+        <div class="view mx-auto mt-1">
+          {% if user.image %}
+          <img class="card-img-top" style="border-radius: 50%; height: 150px; width: 150px;" src="{{user.image.url}}"
+            alt="Card image cap">
+          {% else %}
+          <img class="card-img-top" style="border-radius: 50%; height: 150px; width: 150px;"
+            src="https://mdbootstrap.com/img/Photos/Avatars/avatar.jpg" alt="Card image cap">
+          {% endif %}
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
 
-            <form action="{% url 'updateProfilePic' %}" method="post" enctype='multipart/form-data'>
+        <!--Card image-->
+
+        <!--Card content-->
+        <div class="card-body text-center">
+          <!--Title-->
+          <a>
+            <h4 class="card-title">James K</h4>
+            <p class="card-text pb-1">{{user.email}}</p>
+
+          </a>
+          <form action="{% url 'updateProfilePic' %}" method="post" enctype='multipart/form-data'>
             {% csrf_token %}
-              
-            {% bootstrap_form editProfileForm layout='inline '%}
-            <div class="form-group">
-              <button type="submit" class="btn btn-success btn-sm px-2 py-1"><i class="far fa-edit mr-2" aria-hidden="true"></i> Edit </button>
+            <div class="editProfile">
+              {% bootstrap_form editProfileForm layout='inline '%}
             </div>
-            </form>
+            <button type="submit" class="btn btn-sm btn-outline-dark-green"><i class="far fa-edit mr-1"
+                aria-hidden="true"></i>Edit
+              Profile</button type="submit">
+          </form>
+
+          <!--Text-->
+          <hr>
+          <p class="card-meta">Pawame</p>
+        </div>
+        <!--Card content-->
+
       </div>
-
-
     </div>
   </div>
+
+  <!--Card-->
 
   {% endblock %}
