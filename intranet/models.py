@@ -10,6 +10,8 @@ from pawame import settings
 from tinymce.models import HTMLField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.db.models.signals import Signal
+from pawame.settings import AUTH_USER_MODEL
 
 
 class MyUserManager(BaseUserManager):
@@ -60,8 +62,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     user_type = models.PositiveSmallIntegerField(choices=USER_TYPES_CHOICES)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-    department = models.PositiveSmallIntegerField(
-        choices=DEPARTMENTS, null=True)
+    department = models.PositiveSmallIntegerField(choices=DEPARTMENTS, null=True)
+    image = models.ImageField(upload_to='photos/', null=True)
+    is_online = models.BooleanField(default=False)
+
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'user_type']
@@ -92,7 +96,6 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    is_online = models.BooleanField(default=False)
 
     def save_profile(self):
         self.save()
@@ -123,13 +126,13 @@ class Profile(models.Model):
                 return True
         else:
             return False
-
-    @receiver(post_save, sender=User)
-    def create_profile(sender, instance, created, **kwargs):
+        
+    @receiver(post_save, sender=AUTH_USER_MODEL)
+    def create_profile(sender, instance,created,**kwargs):
         if created:
             Profile.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
+    
+    @receiver(post_save, sender=AUTH_USER_MODEL)
     def save_profile(sender, instance, **kwargs):
         instance.profile.save()
 

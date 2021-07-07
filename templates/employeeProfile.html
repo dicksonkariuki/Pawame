@@ -2,32 +2,26 @@
 {% block content %}
 
 <div class="container">
-  <h4 class="text-center font-weight-bold pt-2"> HUMAN RESOURCE</h4>
+  <h4 class="text-center font-weight-bold pt-2"> My Profile </h4>
   <hr>
   <div class="row d-flex justify-content-center">
     <div class="col-md-4">
       <div class="text-center">
-        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" height="150px" width="150px"
-          class="rounded-circle" alt="woman avatar">
-        <div class="file-field mb-2 mt-2">
-          <div class="btn btn-outline-green btn-sm">
-            <input type="file">
-          </div>
-        </div>
+
+                  {% if user.image %}                 
+                  <img class="rounded-circle avatar z-depth-1-half mr-1" src="{{user.image.url}}" style="width:150px; height:150px;"> 
+                  {% else %}
+                   <img class="rounded-circle avatar z-depth-1-half mr-1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmgQLi9YIA2uiwnuZ_LU_K-nOVMvilA2A5M2dNNescwKKBm6EI&s" style="width:150px; height:150px;"> 
+                  {% endif %}
       </div>
-      <div class="md-form">
-        <input type="email" id="name" class="form-control">
-        <label for="name">Name</label>
+
+      <div class="text-center mt-2">
+        <p> {{user.username}}</p>
+      
+        <a href="{% url 'editProfile' %}" class="btn btn-sm btn-outline-dark-green"> Edit my profile </a>
       </div>
-      <div class="md-form">
-        <input type="email" id="email" class="form-control">
-        <label for="email">E-mail</label>
-      </div>
-      <div class="md-form">
-        <input type="email" id="bio" class="form-control">
-        <label for="bio">Bio</label>
-      </div>
-      <button class="btn btn-sm btn-green font-weight-bold">EDIT</button>
+      
+      
     </div>
   </div>
 

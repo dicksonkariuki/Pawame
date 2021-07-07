@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import dj_database_url
 from decouple import config, Csv
+import django_heroku
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -192,7 +193,7 @@ USE_TZ = True
 # custom authentications
 AUTH_USER_MODEL = 'intranet.User'
 LOGIN_REDIRECT_URL = 'updates'
-LOGIN_URL = 'login'
+# LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'login'
 # Static files (CSS, JavaScript, Images)
@@ -223,3 +224,5 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+django_heroku.settings(locals())
